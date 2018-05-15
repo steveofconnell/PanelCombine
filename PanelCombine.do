@@ -1,4 +1,4 @@
-
+//some 2010-gen inspiration from here: https://www.stata.com/statalist/archive/2010-01/msg00213.html
 prog drop _all
 prog define panelcombine
 qui {
