@@ -1,11 +1,20 @@
 //some 2010-gen inspiration from here: https://www.stata.com/statalist/archive/2010-01/msg00213.html
-prog drop _all
+cap prog drop panelcombine
 prog define panelcombine
 qui {
-syntax, use(str asis) save(str asis) *
+syntax, use(str asis) paneltitles(str asis) save(str asis) *
 preserve
-tokenize `use'
 
+tokenize `"`paneltitles'"'
+//read in loop
+local num 1
+while "``num''"~="" {
+local panel`num'title="``num''"
+local num=`num'+1
+}
+
+
+tokenize `use'
 //read in loop
 local num 1
 while "``num''"~="" {
@@ -19,18 +28,24 @@ local num=`num'+1
 //conditional processing loop
 local num 1
 while "``num''"~="" {
+local panellabel : word `num' of `c(ALPHA)'
 use `temp`num'', clear
-	if `num'==1 { //process first panel
-	replace v1 = "\\" if strpos(v1,"Note:")>0
+	if `num'==1 { //process first panel -- clip bottom
+	drop if strpos(v1,"Note:")>0 | strpos(v1,"Standard errors in parentheses")>0 | strpos(v1,"p<.1")>0
 	drop if v1=="\end{tabular}" | v1=="}"
+	replace v1 = "\hline \linebreak \textbf{\textit{Panel `panellabel': `panel1title'}} \\" if v1=="\hline" & _n<10
+	replace v1 = "\hline" if v1=="\hline\hline" & _n!=1
 	}
-	else if `num'==`max' { //process final panel
-	drop if _n<=3
-	replace v1 = "\\" if _n==1
+	else if `num'==`max' { //process final panel -- clip top
+	drop if _n<=6
+	replace v1 = "\linebreak \textbf{\textit{Panel `panellabel': `panel`num'title'}} \\" if _n==1
 	}
-	else { //process middle panels
-	replace v1 = "\\" if strpos(v1,"Note:")>0
+	else { //process middle panels -- clip top and bottom
+	drop if _n<=6
+	replace v1 = " \linebreak \textbf{\textit{Panel `panellabel': `panel`num'title'}} \\" if _n==1
+	drop if strpos(v1,"Note:")>0 | strpos(v1,"Standard errors in parentheses")>0 | strpos(v1,"p<.1")>0
 	drop if v1=="\end{tabular}" | v1=="}"
+	replace v1 = "\hline" if v1=="\hline\hline"
 	}
 	save `temp`num'', replace
 local num=`num'+1
@@ -47,6 +62,7 @@ outsheet using `save', noname replace noquote
 restore
 }
 end
+
 
 
 sysuse auto, clear
