@@ -31,7 +31,7 @@ while "``num''"~="" {
 local panellabel : word `num' of `c(ALPHA)'
 use `temp`num'', clear
 	if `num'==1 { //process first panel -- clip bottom
-	drop if strpos(v1,"Note:")>0 | strpos(v1,"Standard errors in parentheses")>0 | strpos(v1,"p<.1")>0
+	drop if strpos(v1,"Note:")>0 | strpos(v1,"in parentheses")>0 | strpos(v1,"p<0")>0
 	drop if v1=="\end{tabular}" | v1=="}"
 	replace v1 = "\hline \linebreak \textbf{\textit{Panel `panellabel': `panel1title'}} \\" if v1=="\hline" & _n<8
 	replace v1 = "\hline" if v1=="\hline\hline" & _n!=1
@@ -53,7 +53,7 @@ use `temp`num'', clear
 	drop temp
 	
 	replace v1 = " \multicolumn{`columncount'}{l}{\linebreak \textbf{\textit{Panel `panellabel': `panel`num'title'}}} \\" if _n==1
-	drop if strpos(v1,"Note:")>0 | strpos(v1,"Standard errors in parentheses")>0 | strpos(v1,"p<.1")>0
+	drop if strpos(v1,"Note:")>0 | strpos(v1,"in parentheses")>0 | strpos(v1,"p<0")>0
 	drop if v1=="\end{tabular}" | v1=="}"
 	replace v1 = "\hline" if v1=="\hline\hline"
 	}
