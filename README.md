@@ -3,7 +3,7 @@
 Stata programs to combine LaTex output files from esttab and sutex into single, ready-to-include LaTex-formatted tables with multiple panels
 
 ## Use
-###Panelcombine -- program for combining production-ready regression tables from esttab ... ,style(tex)
+####Panelcombine -- program for combining production-ready regression tables from `esttab ... ,style(tex)`
 User outputs (writes to disk or tempfile) multiple files intended to form multiple panels of the same table.
 Program then takes multiple files and trims the extraneous leading/trailing code and inputs specified panel titles
 
@@ -45,7 +45,7 @@ Then in LaTeX:
 ````
 
 
-###Panelcombinesutex -- program for combining production-ready summary statistics tables from sutex ... ,style(tex)
+####Panelcombinesutex -- program for combining production-ready summary statistics tables from `sutex ... ,style(tex)`
 
 Syntax:
 `panelcombine, use(filenames) paneltitles(strings) columncount(integer) save(filepath)`
@@ -68,14 +68,14 @@ Then in LaTeX (table environment already included):
 \input{sumstats.tex}
 ````
 
-###Notes
+####Notes
 0. files used will appear in the table in the order they are input; similarly, paneltitle are indexed to the files used based on the order they are entered into the option string
 1. File written automatically overwrites existing file (replace option is automatically applied)
 2. `panelcolumns` option specified the number of columns for the panel titles to span, although they are automatically left-justified
 3. Panels are automatically prefixed with Panel A: [paneltitle1], Panel B: [paneltitle2], Panel C: [paneltitle3]...
 
 
-###Potential improvements -- help welcomed
+####Potential improvements -- help welcomed
 1. justification option for panel titles (currently left only)
 2. ?
 
