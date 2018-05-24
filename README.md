@@ -78,7 +78,7 @@ Then in LaTeX (table environment already included):
 3. Panels are automatically prefixed with Panel A: [paneltitle1], Panel B: [paneltitle2], Panel C: [paneltitle3]...
 
 
-####Potential improvements
+####Potential improvements####
 
 
 1. justification option for panel titles (currently left only)
