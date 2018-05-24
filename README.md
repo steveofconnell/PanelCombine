@@ -55,7 +55,7 @@ MWE:
 ````
 sysuse auto, clear
 forval i = 1/5 {
-sutex price mpg headroom weight length turn displacement gear_ratio, labels minmax file("sumstatsP`"`i'.tex")  title("Summary statistics TITLE")
+sutex price mpg headroom weight length turn displacement gear_ratio, labels minmax file("sumstatsP`i'.tex")  title("Summary statistics TITLE")
 }
 
 panelcombinesutex, use(sumstatsP1.tex sumstatsP2.tex sumstatsP3.tex sumstatsP3.tex sumstatsP4.tex sumstatsP5.tex) ///
