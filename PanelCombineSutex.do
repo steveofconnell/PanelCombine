@@ -47,7 +47,7 @@ use `temp`num'', clear
 	drop if _n<4
 	replace v1 = " \multicolumn{`columncount'}{l}{\textbf{\textit{Panel `panellabel': `panel`num'title'}}} \\" if _n==1
 	replace v1 = "\hline" if v1=="\hline\end{tabular}"
-	replace v1 == "`addnotes'" if v1== "\end{table}"
+	replace v1 = "`addcustomnotes'" if v1== "\end{table}"
 	replace v1 = "\end{table}" if _n==_N
 	}
 	save `temp`num'', replace
