@@ -2,7 +2,7 @@
 cap prog drop panelcombinesutex
 prog define panelcombinesutex
 qui {
-syntax, use(str asis) paneltitles(str asis) columncount(integer) save(str asis)
+syntax, use(str asis) paneltitles(str asis) columncount(integer) save(str asis) addnotes(str asis)
 preserve
 
 tokenize `"`paneltitles'"'
@@ -47,8 +47,8 @@ use `temp`num'', clear
 	drop if _n<4
 	replace v1 = " \multicolumn{`columncount'}{l}{\textbf{\textit{Panel `panellabel': `panel`num'title'}}} \\" if _n==1
 	replace v1 = "\hline" if v1=="\hline\end{tabular}"
-	drop if v1 == "\end{table}"
-	drop if trim(v1)==""
+	replace v1 == "`addnotes'" if v1== "\end{table}"
+	replace v1 = "\end{table}" if _n==_N
 	}
 	save `temp`num'', replace
 local num=`num'+1
