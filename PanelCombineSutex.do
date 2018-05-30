@@ -40,15 +40,16 @@ use `temp`num'', clear
 	//process header to drop everything until first hline
 	drop if _n<4
 	replace v1 = " \multicolumn{`columncount'}{l}{\textbf{\textit{Panel `panellabel': `panel`num'title'}}} \\" if _n==1
-	drop if trim(v1)==""
+	repl_conf v1 = `addcustomnotes' + "  \end{table}" if v1== "\end{table}"
+	//repl_conf v1 = "\end{table}" if _n==_N
 	}
 	else { //process middle panels -- clip top and bottom
 	//process header to drop everything until first hline
 	drop if _n<4
 	replace v1 = " \multicolumn{`columncount'}{l}{\textbf{\textit{Panel `panellabel': `panel`num'title'}}} \\" if _n==1
 	replace v1 = "\hline" if v1=="\hline\end{tabular}"
-	replace v1 = "`addcustomnotes'" if v1== "\end{table}"
-	replace v1 = "\end{table}" if _n==_N
+	drop if v1 == "\end{table}"
+	drop if trim(v1)==""
 	}
 	save `temp`num'', replace
 local num=`num'+1
