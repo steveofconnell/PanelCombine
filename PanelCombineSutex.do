@@ -2,7 +2,7 @@
 cap prog drop panelcombinesutex
 prog define panelcombinesutex
 qui {
-syntax, use(str asis) paneltitles(str asis) columncount(integer) save(str asis) addnotes(str asis)
+syntax, use(str asis) paneltitles(str asis) columncount(integer) save(str asis) addcustomnotes(str asis)
 preserve
 
 tokenize `"`paneltitles'"'
