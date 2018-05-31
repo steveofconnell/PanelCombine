@@ -1,0 +1,36 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{4}{c}}
+\hline
+&\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
+&\multicolumn{1}{c}{\makecell{Base\\ (1)}}&\multicolumn{1}{c}{\makecell{+trunk\\(2)}}&\multicolumn{1}{c}{\makecell{+headroom\\(3)}}&\multicolumn{1}{c}{\makecell{+length\\(4)}}\\
+\hline \multicolumn{5}{l}{ \linebreak \textbf{\textit{Panel A: Full sample}}} \\
+Mileage (mpg)       &   -2.39e+02\sym{***}&   -2.20e+02\sym{***}&   -2.24e+02\sym{***}&   -1.74e+02\sym{*}  \\
+&  (53.07669)         &  (65.59262)         &  (65.27511)         &  (87.75118)         \\
+\hline
+$N$                 &          74         &          74         &          74         &          74         \\
+$R^2$               &        0.22         &        0.22         &        0.24         &        0.25         \\
+Mean of outcome     &     6165.26         &     6165.26         &     6165.26         &     6165.26         \\
+St. dev. of outcome &     2949.50         &     2949.50         &     2949.50         &     2949.50         \\
+\hline
+\multicolumn{5}{l}{\linebreak \textbf{\textit{Panel B: Foreign cars}}} \\
+Mileage (mpg)       &   -2.50e+02\sym{***}&   -2.33e+02\sym{***}&   -2.36e+02\sym{***}&   -55.64738         \\
+&  (68.77435)         &  (70.27696)         &  (72.35055)         &  (66.96059)         \\
+\hline
+$N$                 &          22         &          22         &          22         &          22         \\
+$R^2$               &        0.40         &        0.43         &        0.44         &        0.73         \\
+Mean of outcome     &     6384.68         &     6384.68         &     6384.68         &     6384.68         \\
+St. dev. of outcome &     2621.92         &     2621.92         &     2621.92         &     2621.92         \\
+\hline
+\multicolumn{5}{l}{\linebreak \textbf{\textit{Panel C: Domestic cars}}} \\
+Mileage (mpg)       &   -3.29e+02\sym{***}&   -3.07e+02\sym{***}&   -3.18e+02\sym{***}&   -2.12e+02         \\
+&  (79.74034)         & (107.81282)         & (107.09054)         & (155.49704)         \\
+\hline
+$N$                 &          52         &          52         &          52         &          52         \\
+$R^2$               &        0.25         &        0.26         &        0.28         &        0.30         \\
+Mean of outcome     &     6072.42         &     6072.42         &     6072.42         &     6072.42         \\
+St. dev. of outcome &     3097.10         &     3097.10         &     3097.10         &     3097.10         \\
+\hline\hline
+\multicolumn{5}{l}{\footnotesize \begin{minipage}{.8\linewidth} \footnotesize \smallskip \textbf{Note:} Table reports regression estimates about cars. Significance levels are indicated by $*$ $<.1$, ** $<.05$,  *** $<.01$.   \end{minipage}}\\
+\end{tabular}
+}

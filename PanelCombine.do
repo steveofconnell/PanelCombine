@@ -2,7 +2,7 @@
 cap prog drop panelcombine
 prog define panelcombine
 qui {
-syntax, use(str asis) paneltitles(str asis) columncount(integer) save(str asis)
+syntax, use(str asis) paneltitles(str asis) columncount(integer) save(str asis) [CLEANup]
 preserve
 
 tokenize `"`paneltitles'"'
@@ -69,6 +69,17 @@ local num=`num'+1
 }
 
 outsheet using `save', noname replace noquote
+
+
+	if "`cleanup'"!="" { //erasure loop
+	tokenize `use'
+	local num 1
+		while "``num''"~="" {
+		erase "``num''"
+		local num=`num'+1
+		}
+	}
+
 restore
 }
 end
