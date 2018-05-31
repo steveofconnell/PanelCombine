@@ -37,7 +37,7 @@ panelcombine, use(Panel1.tex Panel2.tex Panel3.tex)  columncount(5) paneltitles(
 
 ````
 
-Then in LaTeX:
+Then in LaTeX (specific esttab output used above requires `makecell` and `caption` packages):
 
 ````
 \begin{table}[H] \centering \caption{Table title} \label{tablelabel}
@@ -68,7 +68,7 @@ paneltitles("Full sample" "Foreign cars" "Domestic cars") columncount(5) save(su
 addcustomnotes("\begin{minipage}{`linewidth'\linewidth} \footnotesize \smallskip \textbf{Note:} Table shows summary statistics for cars in different estimation samples.\end{minipage}" ) cleanup
 ````
 
-Then in LaTeX (table environment already included):
+Then in LaTeX (table environment already included in output; `makecell` and `caption` needed again):
 
 ````
 \input{sumstats.tex}
