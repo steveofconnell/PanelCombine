@@ -33,7 +33,7 @@ use `temp`num'', clear
 	if `num'==1 { //process first panel -- clip bottom
 	drop if strpos(v1,"Note:")>0 | strpos(v1,"in parentheses")>0 | strpos(v1,"p<0")>0
 	drop if v1=="\end{tabular}" | v1=="}"
-	replace v1 = "\hline \multicolumn{`columncount'}{l}{ \linebreak \textbf{\textit{Panel `panellabel': `panel1title'}}} \\" if v1=="\hline" & _n<8
+	replace v1 = "\hline \multicolumn{`columncount'}{l}{ \linebreak \textbf{\textit{Panel `panellabel': `panel1title'}}} \\" if v1=="\hline" & _n==8
 	replace v1 = "\hline" if v1=="\hline\hline" & _n>4 //this is intended to replace the bottom double line; more robust condition probably exists
 	}
 	else if `num'==`max' { //process final panel -- clip top
